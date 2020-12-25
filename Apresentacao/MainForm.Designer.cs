@@ -281,11 +281,11 @@ namespace Apresentacao
             // lblStatusPort
             // 
             this.lblStatusPort.AutoSize = true;
-            this.lblStatusPort.Font = new System.Drawing.Font("Dosis", 12F, System.Drawing.FontStyle.Bold);
+            this.lblStatusPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.lblStatusPort.ForeColor = System.Drawing.Color.Black;
             this.lblStatusPort.Location = new System.Drawing.Point(606, 9);
             this.lblStatusPort.Name = "lblStatusPort";
-            this.lblStatusPort.Size = new System.Drawing.Size(71, 26);
+            this.lblStatusPort.Size = new System.Drawing.Size(87, 25);
             this.lblStatusPort.TabIndex = 6;
             this.lblStatusPort.Text = "Status: ";
             // 
@@ -327,11 +327,11 @@ namespace Apresentacao
             // lblBaudRate
             // 
             this.lblBaudRate.AutoSize = true;
-            this.lblBaudRate.Font = new System.Drawing.Font("Dosis", 12F, System.Drawing.FontStyle.Bold);
+            this.lblBaudRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.lblBaudRate.ForeColor = System.Drawing.Color.Black;
             this.lblBaudRate.Location = new System.Drawing.Point(198, 9);
             this.lblBaudRate.Name = "lblBaudRate";
-            this.lblBaudRate.Size = new System.Drawing.Size(96, 26);
+            this.lblBaudRate.Size = new System.Drawing.Size(119, 25);
             this.lblBaudRate.TabIndex = 2;
             this.lblBaudRate.Text = "Baud Rate:";
             // 
@@ -348,11 +348,11 @@ namespace Apresentacao
             // lblComPort
             // 
             this.lblComPort.AutoSize = true;
-            this.lblComPort.Font = new System.Drawing.Font("Dosis", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComPort.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblComPort.ForeColor = System.Drawing.Color.Black;
             this.lblComPort.Location = new System.Drawing.Point(18, 9);
             this.lblComPort.Name = "lblComPort";
-            this.lblComPort.Size = new System.Drawing.Size(91, 26);
+            this.lblComPort.Size = new System.Drawing.Size(115, 25);
             this.lblComPort.TabIndex = 0;
             this.lblComPort.Text = "COM Port:";
             // 
@@ -462,7 +462,7 @@ namespace Apresentacao
             this.pnlInferior.Location = new System.Drawing.Point(0, 587);
             this.pnlInferior.Name = "pnlInferior";
             this.pnlInferior.Size = new System.Drawing.Size(941, 29);
-            this.pnlInferior.TabIndex = 0;          
+            this.pnlInferior.TabIndex = 0;
             // 
             // pnlInferiorBorda
             // 

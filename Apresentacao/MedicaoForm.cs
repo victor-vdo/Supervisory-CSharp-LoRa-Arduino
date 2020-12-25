@@ -5,12 +5,10 @@ using System.Windows.Forms;
 namespace Apresentacao
 {
     public partial class MedicaoForm : Form
-    {
-        
+    {       
         SerialPort conexao = new SerialPort();
         string str = ConexaoSerial.Instancia.GetConexao().ReadExisting();
         delegate void SetTextDelegate(string value);
-
 
         public MedicaoForm()
         {
@@ -32,124 +30,93 @@ namespace Apresentacao
             ckbSpeedMotor.Checked = true;
             ConexaoSerial.Instancia.GetConexao().DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
          
-        }
-
-        //Timer
-        
+        }      
 
         // Métodos Set's de Medição
         #region SetMedicao
 
-            // Setar Textos nos textBox
-            #region SetTemperatura
-                public void SetTexts(string value)
-                {
-                    if (InvokeRequired)
-                        try
-                        {
-                            Invoke(new SetTextDelegate(SetTexts), value);
-                        }
-                        catch { }
-                    else
-                    {
-                        if (value.Substring(0,1).Equals("["))
-                        {
-                                    
-                            // Seta a temperatura
-                            if (value.Substring(1, 1).Equals("T") && value.Substring(2, 1).Equals("P"))
-                            {
-                                txbTemperatura.Text = value.Replace("[TP", "").Replace("]", "");
-                            }
-
-                            // Seta a Umidade
-                            if (value.Substring(1, 1).Equals("U") && value.Substring(2, 1).Equals("M"))
-                            {                           
-                                txbUmidade.Text = value.Replace("[UM", "").Replace("]","");
-                            }
-
-                            // Seta a Distância
-                            if (value.Substring(1, 1).Equals("D") && value.Substring(2, 1).Equals("T"))
-                            {
-                                txbDistancia.Text = value.Replace("[DT", "").Replace("]", "");
-                            }
-
-                            // Seta a Speed Motor
-                            if (value.Substring(1, 1).Equals("S") && value.Substring(2, 1).Equals("M"))
-                            {
-                                txbSpeedMotor.Text = value.Replace("[SM", "").Replace("]", "");
-                            }
-
-
-                            // Seta o Peso
-                            if (value.Substring(1, 1).Equals("P") && value.Substring(2, 1).Equals("S"))
-                            {
-                                txbPeso.Text = value.Replace("[PS", "").Replace("]", "");
-                            }
-                            // Seta o Nível
-                            if (value.Substring(1, 1).Equals("N") && value.Substring(2, 1).Equals("V"))
-                            {
-                                txbNivel.Text = value.Replace("[NV", "").Replace("]", "");
-                            }
-                }
-                    }
-                }
-
-                    private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
-                    {
-                        string indata = ConexaoSerial.Instancia.GetConexao().ReadExisting();
-                        SetTexts(indata);
-                    }
-            #endregion
-
-            // Setar Umidade
-            #region SetUmidade
-            public void SetUmidade(string value)
+        // Setar Textos nos textBox
+        #region SetTemperatura
+        public void SetTemperature(string value)
+        {
+            try
             {
                 if (InvokeRequired)
                     try
                     {
-                        Invoke(new SetTextDelegate(SetUmidade), value);
+                        Invoke(new SetTextDelegate(SetTemperature), value);
                     }
                     catch { }
                 else
                 {
-                    if (value.Substring(0, 1).Equals("[")
-                    && value.Substring(1, 1).Equals("U") && value.Substring(2, 1).Equals("M"))
+                    if (value.Substring(0, 1).Equals("["))
                     {
-                        value.Replace("[UM", "");
-                        txbUmidade.Text = value;
-                    }
-                }       
-            }
-            private void DataReceivedHandlerUmidade(object sender, SerialDataReceivedEventArgs e)
-            {
-                string indata = ConexaoSerial.Instancia.GetConexao().ReadLine().ToString();
-                SetUmidade(indata);
-            }
-            #endregion
 
-            // Setar SpeedMotor
-            #region SetSpeedMotor
-            public void SetSpeedMotor(string value)
+                        // Seta a temperatura
+                        if (value.Substring(1, 1).Equals("T") && value.Substring(2, 1).Equals("P"))
+                        {
+                            txbTemperatura.Text = value.Replace("[TP", "").Replace("]", "");
+                        }
+                    }
+                }
+            }
+            catch (Exception) { }
+        }
+        #endregion
+
+        #region SetUmidade
+        public void SetUmidade(string value)
+        {
+            if (InvokeRequired)
+                try
+                {
+                    Invoke(new SetTextDelegate(SetUmidade), value);
+                }
+                catch { }
+            else
             {
+                if (value.Substring(0, 1).Equals("[")
+                && value.Substring(1, 1).Equals("U") && value.Substring(2, 1).Equals("M"))
+                {
+                    value.Replace("[UM", "").Replace("]", "");
+                    txbUmidade.Text = value;
+                }
+            }
+        }
+        #endregion
+
+        // Setar SpeedMotor
+        #region SetSpeedMotor
+        public void SetSpeedMotor(string value)
+        {
             if (InvokeRequired)
                 try
                 {
                     Invoke(new SetTextDelegate(SetSpeedMotor), value);
                 }
                 catch { }
-            else
-                txbSpeedMotor.Text = value;
-            }
-            private void DataReceivedHandlerSpeedMotor(object sender, SerialDataReceivedEventArgs e)
+            else                  
             {
-                string indata = ConexaoSerial.Instancia.GetConexao().ReadExisting();
-                
-                SetSpeedMotor(indata);
+                if (value.Substring(0, 1).Equals("[")
+                && value.Substring(1, 1).Equals("S") && value.Substring(2, 1).Equals("M"))
+                {
+                    value.Replace("[SM", "").Replace("]", "");
+                    txbUmidade.Text = value;
+                }
             }
+        }
         #endregion
 
         #endregion
+
+        private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
+        {
+            string indata = ConexaoSerial.Instancia.GetConexao().ReadExisting().ToString();
+            SetTemperature(indata);
+            SetUmidade(indata);
+            SetSpeedMotor(indata);
+        }      
+      
 
         // Métodos Checkbox para os módulos de medição
         #region Checkbox
@@ -260,7 +227,7 @@ namespace Apresentacao
                     pnlModuloNivel.Enabled = false;
                 }
             }
-            #endregion
+        #endregion
 
         #endregion
 
